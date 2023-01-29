@@ -1,4 +1,4 @@
-// Function to get User Input
+// Function to get User Input.  Added prompt get user input via separate window.  
 function getUserChoice(userInput) {
     userInput = userInput.toLowerCase();
     userInput = prompt('Please choose rock, paper, or scissors.');
@@ -63,7 +63,7 @@ function determineWinner(userChoice, computerChoice) {
         
     }
 
-    // Fun. 
+    // 'Bomb' choice added for win condition.  
     if (userChoice === 'bomb') {
         return 'Congratulations, you won!'
         userScore += 1;
@@ -71,7 +71,7 @@ function determineWinner(userChoice, computerChoice) {
 
 };
 
-// Added the loop to run the game five times. I spent too much time overcomplicating this! 
+// Added the loop to run the game five times. 
 function playGame() {
     for (let i = 0; i < 5; i++) {
         const userChoice = getUserChoice('rock');
