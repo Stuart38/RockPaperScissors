@@ -1,6 +1,7 @@
 // Function to get User Input
 function getUserChoice(userInput) {
-    userInput = userInput.toLowerCase(); 
+    userInput = userInput.toLowerCase();
+    userInput = prompt('Please choose rock, paper, or scissors.');
     if (userInput === 'rock' || userInput === 'scissors' || userInput === 'paper' || userInput === 'bomb') {
         return userInput
     } else {
@@ -22,6 +23,10 @@ function getComputerChoice() {
     }
 };
 
+// Global variables for scores:
+let userScore = 0;
+let computerScore = 0;
+
 // Determining winner.  Added concatenation for 'Congrats' message for some flavor.
 function determineWinner(userChoice, computerChoice) {
     if (userChoice === computerChoice) {
@@ -30,24 +35,30 @@ function determineWinner(userChoice, computerChoice) {
     if (userChoice === 'rock') {
         if (computerChoice === 'paper') {
             return 'Sorry, paper beats rock';
+            computerScore += 1;
         } else {
             return 'Congratulations, rock beats ' + computerChoice + '!';
+            userScore += 1;
         }
     }
 
     if (userChoice === 'paper') {
         if (computerChoice === 'scissors') {
             return 'Sorry, scissors beats paper!';
+            computerScore += 1;
         } else {
             return 'Congratulations, paper beats' + computerChoice + '!';
+            userScore += 1;
         }
     }
 
     if (userChoice === 'scissors') {
         if (computerChoice === 'rock') {
             return 'Sorry, rock beats scissors!';
+            computerScore += 1;
         } else {
             return 'Congratulations, scissors beats' + computerChoice + '!';
+            userScore += 1;
         }
         
     }
@@ -55,18 +66,21 @@ function determineWinner(userChoice, computerChoice) {
     // Fun. 
     if (userChoice === 'bomb') {
         return 'Congratulations, you won!'
+        userScore += 1;
     }
 
 };
 
-// Playing the game-- calling the userChoice and computerChoice as parameters throws an error stating variable has already been delcared-- investigating this. 
+// Added the loop to run the game five times. I spent too much time overcomplicating this! 
 function playGame() {
-    const userChoice = getUserChoice('rock');
-    const computerChoice = getComputerChoice();
-    console.log('You threw: ' + userChoice);
-    console.log('The computer threw: ' + computerChoice);
-    console.log(determineWinner(userChoice, computerChoice));
-};
+    for (let i = 0; i < 5; i++) {
+        const userChoice = getUserChoice('rock');
+        const computerChoice = getComputerChoice();
+        console.log('You threw: ' + userChoice);
+        console.log('The computer threw: ' + computerChoice);
+        console.log(determineWinner(userChoice, computerChoice));
+    }
+}
 
 playGame();
 
